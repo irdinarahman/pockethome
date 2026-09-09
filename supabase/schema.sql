@@ -76,6 +76,17 @@ grant select, insert, update, delete on public.daily_stats to authenticated;
 grant select, insert, update, delete on public.self_care_streak to authenticated;
 grant select, insert, update, delete on public.upcoming_items to authenticated;
 grant select, insert, update, delete on public.widget_settings to authenticated;
+
+-- service_role bypasses RLS by design, but this project still needs
+-- explicit table grants for it too (same issue we hit with authenticated).
+grant usage on schema public to service_role;
+grant select, insert, update, delete on public.tasks to service_role;
+grant select, insert, update, delete on public.events to service_role;
+grant select, insert, update, delete on public.expenses to service_role;
+grant select, insert, update, delete on public.daily_stats to service_role;
+grant select, insert, update, delete on public.upcoming_items to service_role;
+grant select, insert, update, delete on public.widget_settings to service_role;
+grant select, insert, update, delete on public.self_care_streak to service_role;
 alter table public.tasks enable row level security;
 alter table public.events enable row level security;
 alter table public.expenses enable row level security;
