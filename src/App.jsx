@@ -10,6 +10,7 @@ export default function App() {
   const [session, setSession] = useState(null);
   const [authLoading, setAuthLoading] = useState(true);
   const initRef = useRef(false);
+  const onesignalInitRef = useRef(false);
 
   useEffect(() => {
     if (initRef.current) return;
@@ -39,6 +40,13 @@ export default function App() {
     return () => listener.subscription.unsubscribe();
   }, []);
 
+  useEffect(() => {
+    if (session?.user?.id && !onesignalInitRef.current) {
+      onesignalInitRef.current = true;
+      initOneSignal(session.user.id);
+    }
+  }, [session]);
+
   if (authLoading) return null;
   if (!session) {
     return (
@@ -50,12 +58,6 @@ export default function App() {
   }
 
   const userId = session.user.id;
-
-  const onesignalInitRef = useRef(false);
-  if (!onesignalInitRef.current) {
-    onesignalInitRef.current = true;
-    initOneSignal(userId);
-  }
 
   return (
     <BrowserRouter>
