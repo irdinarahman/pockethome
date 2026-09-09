@@ -18,6 +18,14 @@ self.addEventListener("activate", (event) => {
 // avoids ever serving an old index.html that points at deleted hashed asset
 // filenames from a previous build.
 self.addEventListener("fetch", (event) => {
+  const requestUrl = new URL(event.request.url);
+  if (requestUrl.origin !== self.location.origin) {
+    // Let cross-origin requests (Supabase API, OneSignal, etc.) go straight
+    // through untouched — this worker should only ever manage our own
+    // static assets, never third-party API calls with live data.
+    return;
+  }
+
   event.respondWith(
     fetch(event.request)
       .then((response) => {
