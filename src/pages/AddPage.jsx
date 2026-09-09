@@ -100,6 +100,7 @@ function TaskForm({ userId, setStatus }) {
   return (
     <form onSubmit={handleSubmit}>
       <input style={fieldStyle()} placeholder="Task title" value={title} onChange={(e) => setTitle(e.target.value)} />
+      <label className="field-label">Due date (optional)</label>
       <input style={fieldStyle()} type="date" value={dueDate} onChange={(e) => setDueDate(e.target.value)} />
       <button className="primary" type="submit" disabled={saving}>
         {saving ? "Adding…" : "Add task"}
@@ -132,6 +133,7 @@ function EventForm({ userId, setStatus }) {
   return (
     <form onSubmit={handleSubmit}>
       <input style={fieldStyle()} placeholder="Event title" value={title} onChange={(e) => setTitle(e.target.value)} />
+      <label className="field-label">Event date</label>
       <input style={fieldStyle()} type="date" value={eventDate} onChange={(e) => setEventDate(e.target.value)} />
       <button className="primary" type="submit" disabled={saving}>
         {saving ? "Adding…" : "Add event"}
@@ -178,6 +180,7 @@ function ExpenseForm({ userId, setStatus }) {
         onChange={(e) => setAmount(e.target.value)}
       />
       <input style={fieldStyle()} placeholder="Note (optional)" value={note} onChange={(e) => setNote(e.target.value)} />
+      <label className="field-label">Date spent</label>
       <input style={fieldStyle()} type="date" value={spentAt} onChange={(e) => setSpentAt(e.target.value)} />
       <button className="primary" type="submit" disabled={saving}>
         {saving ? "Logging…" : "Log expense"}
@@ -258,6 +261,7 @@ function UpcomingForm({ userId, setStatus }) {
   return (
     <form onSubmit={handleSubmit}>
       <input style={fieldStyle()} placeholder="What's coming up?" value={title} onChange={(e) => setTitle(e.target.value)} />
+      <label className="field-label">Target date</label>
       <input style={fieldStyle()} type="date" value={targetDate} onChange={(e) => setTargetDate(e.target.value)} />
       <select style={fieldStyle()} value={urgency} onChange={(e) => setUrgency(e.target.value)}>
         <option value="low">Low urgency</option>

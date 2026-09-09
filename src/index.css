@@ -223,3 +223,27 @@ body {
   border-color: var(--accent);
   color: var(--accent);
 }
+
+input[type="date"],
+input[type="number"] {
+  color-scheme: dark;
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  box-sizing: border-box;
+  min-width: 0;
+}
+
+@media (prefers-color-scheme: light) {
+  input[type="date"],
+  input[type="number"] {
+    color-scheme: light;
+  }
+}
+
+.field-label {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+  display: block;
+}
